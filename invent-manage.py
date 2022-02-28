@@ -39,8 +39,8 @@ class MainWindow(Screen):
         mydb =mysql.connector.connect(
             host= "localhost",
             user = "root",
-            passwd = "strongone@123",
-            database="inventory_management"
+            passwd = "your_password",
+            database="your_database"
             
         )
 
