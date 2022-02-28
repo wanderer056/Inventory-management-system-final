@@ -1,0 +1,350 @@
+#:kivy 2.0.0
+WindowManager:
+    MainWindow:
+    SecondWindow:
+        id:data_scr
+    ThirdWindow:
+        id:data_scr_third
+    FourthWindow:
+        id:data_scr_fourth
+    FifthWindow:
+        id:data_scr_fifth
+
+
+
+<MainWindow>:
+
+    name:"main"
+    #<ProductModule>:
+    background_color:(145/255,210/255,228/255,1)
+    canvas.before:
+        Color:
+            rgba:self.background_color
+        Rectangle:
+            size:self.size
+            pos:self.pos
+    productid:productid
+    productname:productname
+    quantity:quantity
+    description:description
+    category:category
+
+    custid:custid
+    custname:custname
+    phone:phone
+
+    orderid:orderid
+    orderdate:orderdate
+    prodid:prodid
+    custido:custido
+    qty:qty
+    price:price
+
+    BoxLayout:
+        orientation:"vertical"
+        size:root.width,root.height
+        spacing:"50dp"
+
+        Label:
+            text:"Inventory Management System"
+            size_hint:1,0.2
+            # pos_hint:{'x':0.1}
+            id:top_level
+            font_size:40
+            font_name:"Comic"
+            background_color_top_label:(108/255,169/255,218/255,0.8)
+            canvas.before:
+                Color:
+                    rgba:self.background_color_top_label
+                Rectangle:
+                    size:self.size
+                    pos:self.pos
+
+        BoxLayout:
+            orientation:"horizontal"
+            size:root.width,root.height
+            spacing:"50dp"
+            BoxLayout:
+                orientation:"vertical"
+                # spacing:root.width/50
+                spacing:"30dp"
+                
+
+                Label:
+                    text:"Product"
+                    size_hint:0.2,0.2
+                    pos_hint:{'x':0.5}
+                    id:main_label
+                    font_size:30
+                    font_name:"Calibri"
+                    
+                    
+                
+                GridLayout:
+                    cols:2
+                    row_force_default:True
+                    row_default_height:root.height/20
+                    background_color:(1,0,0,1)
+                    spacing:root.width/110
+                    
+                    
+                    Label:
+                        text: "Product Id"
+
+                    TextInput:
+                        id:productid
+                        multiline:False
+                        
+
+                    Label:
+                        text: "Product Name"
+
+                    TextInput:
+                        id:productname
+                        multiline:False
+
+                    Label:
+                        text: "Quantity"
+                    
+                    TextInput:
+                        id:quantity
+                        multiline:False
+
+                    Label:
+                        text: "Description"
+                    
+                    TextInput:
+                        id:description
+                        multiline:False
+
+                    Label:
+                        text: "Category"
+                    
+                    TextInput:
+                        id:category
+                        multiline:False
+                
+                FloatLayout:        
+                    Button:
+                        text:"Submit"
+                        size_hint:0.4,0.3
+                        pos_hint:{'x':0.55,'y':-1}
+                        on_press:root.submit_for_product()
+
+                
+                
+
+            BoxLayout:
+                
+                orientation:"vertical"
+                spacing:"30dp"
+
+                Label:
+                    text:"Customers"
+                    size_hint:0.2,0.2
+                    pos_hint:{'x':0.5,'y':0.5}
+                    id:cust_label
+                    font_size:30
+                    font_name:"Calibri"     
+
+
+                GridLayout:
+                    cols:2
+                    row_force_default:True
+                    row_default_height:root.height/20
+                    spacing:root.width/110
+                    padding:[0,0,20,0]
+                    
+                    Label:
+                        text: "Customer Id"
+
+                    TextInput:
+                        id:custid
+                        multiline:False
+
+                    Label:
+                        text: "Customer Name"
+
+                    TextInput:
+                        id:custname
+                        multiline:False
+
+                    Label:
+                        text: "Phone"
+                    
+                    TextInput:
+                        id:phone
+                        multiline:False
+                FloatLayout:
+
+                    Button:
+                        text:"Submit"
+                        size_hint:0.4,0.3
+                        pos_hint:{'x':0.55,'y':-1}
+                        on_press:root.submit_for_customer() 
+            BoxLayout:
+                
+                orientation:"vertical"
+                spacing:"30dp"
+
+                Label:
+                    text:"Orders"
+                    size_hint:0.2,0.2
+                    pos_hint:{'x':0.5,'y':0.5}
+                    id:order_label
+                    font_size:30
+                    font_name:"Calibri"     
+
+
+                GridLayout:
+                    cols:2
+                    row_force_default:True
+                    row_default_height:root.height/20
+                    spacing:root.width/110
+                    padding:[0,0,20,0]
+                    
+                    Label:
+                        text: "Order Id"
+
+                    TextInput:
+                        id:orderid
+                        multiline:False
+
+                    Label:
+                        text: "Order Date"
+
+                    TextInput:
+                        id:orderdate
+                        text:"1992-01-22"
+                        multiline:False
+
+                    Label:
+                        text: "Product Id"
+                    
+                    TextInput:
+                        id:prodid
+                        multiline:False
+                    Label:
+                        text: "Customer Id"
+                    
+                    TextInput:
+                        id:custido
+                        multiline:False
+
+                    Label:
+                        text: "Qty"
+                    
+                    TextInput:
+                        id:qty
+                        multiline:False
+                    Label:
+                        text: "Price"
+                    
+                    TextInput:
+                        id:price
+                        multiline:False
+            
+                FloatLayout:
+
+                    Button:
+                        text:"Submit"
+                        size_hint:0.4,0.3
+                        pos_hint:{'x':0.5,'y':-1}
+                        on_press:root.submit_for_order()
+
+        BoxLayout:
+            orientation:"horizontal"
+            spacing:"20dp"
+            padding:"20dp"
+            
+            Button:
+                pos_hint:{'x':0.5,'y':0.05}
+                size_hint:0.4,0.1
+                text:"Show Product Table"
+                on_release: 
+                    app.change_screen('second')
+                    app.add_datatable()
+
+            Button:
+                pos_hint:{'x':0.5,'y':0.05}
+                size_hint:0.4,0.1
+                text:"Show Customer Table"
+                on_release: 
+                    app.change_screen('third')
+                    app.add_datatable_cust()
+
+            Button:
+                pos_hint:{'x':0.5,'y':0.05}
+                size_hint:0.4,0.1
+                text:"Show Order Table"
+                on_release: 
+                    app.change_screen('fourth')
+                    app.add_datatable_order()
+
+            Button:
+                pos_hint:{'x':0.5,'y':0.05}
+                size_hint:0.4,0.1
+                text:"Show all Tables"
+                on_release: 
+                    app.change_screen('fifth')
+                    app.add_datatable_all()
+        
+        
+
+
+<SecondWindow>:
+    name: "second"
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        MDFloatingActionButton:
+            icon: 'arrow-left'
+            on_release: app.change_screen('main')
+
+        AnchorLayout:
+            id: data_layout
+
+<ThirdWindow>:
+    name: "third"
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        MDFloatingActionButton:
+            icon: 'arrow-left'
+            on_release: app.change_screen('main')
+
+        AnchorLayout:
+            id: data_layout_third
+
+<FourthWindow>:
+    name: "fourth"
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        MDFloatingActionButton:
+            icon: 'arrow-left'
+            on_release: app.change_screen('main')
+
+        AnchorLayout:
+            id: data_layout_fourth
+
+<FifthWindow>:
+    name: "fifth"
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        MDFloatingActionButton:
+            icon: 'arrow-left'
+            on_release: app.change_screen('main')
+
+        AnchorLayout:
+            id: data_layout_fifth
+
+
+    
+                     
+                    
+            
+                
+                
+                
